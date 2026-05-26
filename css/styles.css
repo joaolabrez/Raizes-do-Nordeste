@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    width: 100%;
+    padding: 20px;
+    background-color: #f4f4f4; 
+    display: flex; 
+    justify-content: flex-end; 
+}
+
+nav a {
+    margin-left: 20px;
+    text-decoration: none; 
+    color: #333; 
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+}
+main {
+    text-align: center;
+    padding: 60px 20px;
+    font-family: Arial, sans-serif;
+}
+
+main h1 {
+    font-size: 3rem;
+    color: #8B4513; /* Um tom de marrom terra que lembra as raízes e o Nordeste */
+    margin-bottom: 10px;
+}
+
+main p {
+    font-size: 1.2rem;
+    color: #555;
+    font-style: italic;
+}
