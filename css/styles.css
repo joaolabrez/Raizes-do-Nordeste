@@ -15,7 +15,7 @@ header {
 nav a {
     margin-left: 20px;
     text-decoration: none; 
-    color: #333; 
+    color: #8B4513; 
     font-family: Arial, sans-serif;
     font-weight: bold;
 }
@@ -27,7 +27,7 @@ main {
 
 main h1 {
     font-size: 3rem;
-    color: #8B4513; /* Um tom de marrom terra que lembra as raízes e o Nordeste */
+    color: #8B4513;
     margin-bottom: 10px;
 }
 
@@ -35,4 +35,36 @@ main p {
     font-size: 1.2rem;
     color: #555;
     font-style: italic;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="date"] {
+    width: 300px;
+    padding: 12px;
+    margin: 12px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    width: 300px;
+    padding: 12px;
+    background-color: #8B4513;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    gap: 15px;
 }
