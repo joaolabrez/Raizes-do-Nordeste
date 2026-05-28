@@ -12,8 +12,13 @@ header {
     justify-content: flex-end; 
 }
 
+nav {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
 nav a {
-    margin-left: 20px;
     text-decoration: none; 
     color: #8B4513; 
     font-family: Arial, sans-serif;
@@ -102,21 +107,53 @@ select {
     font-weight: bold;
 }
 
+.barra-superior .seletor-unidade {
+    display: none;
+}
+
+main .seletor-unidade {
+    display: block;
+    text-align: center;
+    margin: 15px auto;
+}
+
+main .seletor-unidade select {
+    display: block;
+    margin: 10px auto;
+}
 
 @media (min-width: 768px) {
     
-    .seletor-topo {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
     .barra-superior {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 10px 20px;
+        padding: 20px 40px;
     }
-}
+
+    .barra-superior .seletor-unidade {
+        display: flex !important;
+        align-items: center;
+        gap: 10px;
+        margin: 0;
+    }
+
+    .barra-superior .seletor-unidade select {
+        margin: 0;
+    }
+
+    main .seletor-unidade {
+        display: none !important;
+    }
+
+    main {
+        padding-top: 120px;
+    }
+
     .cardapio {
         display: flex;
         flex-direction: row;  
@@ -124,7 +161,4 @@ select {
         flex-wrap: wrap; 
         gap: 20px; 
     }
-
-.seletor-topo {
-    display: none;
 }
