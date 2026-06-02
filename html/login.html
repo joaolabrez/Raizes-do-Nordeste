@@ -7,16 +7,31 @@
     <title>Login</title>
 </head>
 <body>
-    <form name="login_form" method="get" action="../index.html">
-        <label for="login">Login:</label>
-        <input type="text" id="login" name="login" placeholder="Digite seu login" required>
-        <label for="password">Senha:</label>
-        <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
-        <div class="container-lgpd">
-            <input type="checkbox" id="lgpd" required>
-            <label for="lgpd">Aceito os termos de privacidade e uso de dados conforme a LGPD.</label>
+    <header class="barra-superior">
+        <nav>
+            <a href="../index.html">← Voltar para o Cardápio</a>
+        </nav>
+    </header>
+
+    <main class="container-autenticacao">
+        <div class="caixa-registro">
+            <h2>Entrar no Sistema</h2>
+            <form name="login_form" method="get" action="../index.html">
+                <label for="login">Login:</label>
+                <input type="text" id="login" name="login" placeholder="Digite seu login" required>
+                
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+                
+                <div class="container-lgpd">
+                    <input type="checkbox" id="lgpd" required>
+                    <label for="lgpd">Aceito os termos de privacidade e uso de dados conforme a LGPD.</label>
+                </div>
+                
+                <input type="submit" value="Entrar">
+            </form>
+            <p class="link-alternativo">Não tem conta? <a href="cadastra.html">Cadastre-se aqui</a></p>
         </div>
-        <input type="submit" value="Entrar">
-    </form>
+    </main>
 </body>
 </html>
