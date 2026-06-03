@@ -90,17 +90,34 @@ const formularioCadastro = document.forms['cadastra_form'];
 
 if (formularioCadastro) {
     formularioCadastro.addEventListener('submit', (evento) => {
+        evento.preventDefault(); 
+
         const senha = document.getElementById('password').value;
         const confirmarSenha = document.getElementById('confirm_password').value;
 
         if (senha !== confirmarSenha) {
-            evento.preventDefault();
-            
             alert('Atenção: As senhas digitadas não são iguais! Por favor, verifique.');
-            
             const campoConfirmar = document.getElementById('confirm_password');
             campoConfirmar.focus();
             campoConfirmar.style.borderColor = '#ff0000';
+            return; 
         }
+
+        const avisoSucesso = document.createElement('div');
+        avisoSucesso.className = 'aviso-sucesso-animado';
+        avisoSucesso.innerHTML = '🎉 Conta criada com sucesso! Redirecionando...';
+        
+        document.body.appendChild(avisoSucesso);
+
+        const botao = document.querySelector('.botao-cadastro');
+        if (botao) {
+            botao.value = 'Carregando...';
+            botao.disabled = true;
+            botao.style.opacity = '0.7';
+        }
+
+        setTimeout(() => {
+            window.location.href = 'login.html';
+        }, 2000);
     });
 }
