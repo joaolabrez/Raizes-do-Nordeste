@@ -656,3 +656,211 @@ nav a:hover::after {
     z-index: 9999;
     animation: surgir 0.3s ease-out;
 }
+
+.logo-topo {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #8B4513;
+    font-family: Arial, sans-serif;
+}
+
+.boas-vindas {
+    margin-bottom: 30px;
+}
+
+.categoria-titulo {
+    color: #8B4513;
+    font-family: Arial, sans-serif;
+    text-align: left;
+    max-width: 1000px;
+    margin: 40px auto 20px auto;
+    padding-left: 20px;
+    border-left: 4px solid #8B4513;
+    font-size: 1.6rem;
+}
+
+.cardapio {
+    display: grid !important;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media (min-width: 600px) {
+    .cardapio {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+    }
+}
+
+main {
+    padding-top: 20px !important;
+}
+
+@media (min-width: 768px) {
+    main {
+        padding-top: 120px !important;
+    }
+}
+
+.produto-item {
+    background-color: #ffffff;
+    padding: 24px 16px 16px 16px;
+    margin: 0;
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.badge-destaque {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: #2e7d32;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+.produto-foto {
+    font-size: 3rem;
+    background-color: #fcf8f5;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px auto;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.produto-item h3 {
+    color: #333;
+    font-size: 1.2rem;
+    margin: 10px 0 5px 0;
+}
+
+.descricao {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    font-family: Arial, sans-serif;
+}
+
+.botao-fechar {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: #8B4513;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.botao-fechar:hover {
+    transform: scale(1.2);
+}
+
+@media (max-width: 480px) {
+
+    .carrinho-icone {
+        width: 50px !important;
+        height: 50px !important;
+        bottom: 20px !important;
+        right: 20px !important;
+        font-size: 1.4rem !important;
+    }
+
+    .carrinho-lateral {
+        width: 100% !important;
+        right: -100% !important;
+    }
+    
+    .carrinho-lateral.aberto {
+        right: 0 !important;
+    }
+
+    .barra-superior {
+        padding: 10px 15px !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+    }
+
+    .logo-topo {
+        font-size: 1.1rem !important;
+    }
+
+    .barra-superior nav {
+        gap: 10px !important;
+    }
+
+    .barra-superior nav a {
+        font-size: 0.9rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .cadastro-wrapper {
+        padding: 15px 0 0 0 !important;
+        background-color: #ffffff !important; 
+        display: block !important; 
+    }
+
+    .cadastro-container {
+        flex-direction: column !important;
+        box-shadow: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: auto !important;
+        border-radius: 0 !important;
+        background-color: #ffffff !important;
+    }
+
+    .cadastro-info-lateral {
+        display: flex !important;
+        flex: none !important;
+        width: calc(100% - 30px) !important;
+        margin: 0 auto !important;
+        padding: 30px 20px !important;
+        box-sizing: border-box !important;
+        border-radius: 16px !important; 
+    }
+
+    .info-conteudo h1 {
+        font-size: 1.8rem !important; 
+        margin-bottom: 8px !important;
+    }
+
+    .info-conteudo p {
+        font-size: 0.9rem !important;
+        max-width: 280px !important;
+    }
+
+    .decoracao-nordeste {
+        margin-top: 15px !important;
+        font-size: 1.5rem !important;
+    }
+
+    .cadastro-card {
+        flex: 1 !important;
+        padding: 30px 20px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .cadastro-card form {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}

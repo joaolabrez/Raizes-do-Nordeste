@@ -3,73 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeto</title>
+    <title>Raízes do Nordeste - Cardápio Completo</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+
     <div class="carrinho-icone" id="abrir-carrinho">
-    🛒 <span id="carrinho-contador">0</span>
-</div>
-
-<aside class="carrinho-lateral" id="carrinho-menu">
-    <div class="carrinho-topo">
-        <h2>Seu Carrinho</h2>
-        <button id="fechar-carrinho">X</button>
+        🛒 <span id="carrinho-contador">0</span>
     </div>
 
-    <div class="carrinho-itens" id="carrinho-lista-itens">
-        <p class="carrinho-vazio">Seu carrinho está vazio.</p>
-    </div>
-
-    <div class="carrinho-rodape">
-        <div class="total-container">
-            <span>Total: </span>
-            <span id="carrinho-total">R$ 0,00</span>
+    <aside class="carrinho-lateral" id="carrinho-menu">
+        <div class="carrinho-topo">
+            <h2>Seu Carrinho</h2>
+            <button id="fechar-carrinho" class="botao-fechar">&times;</button>
         </div>
-        <button class="botao-finalizar">Finalizar Pedido</button>
-    </div>
-</aside>
+
+        <div class="carrinho-itens" id="carrinho-lista-itens">
+            <p class="carrinho-vazio">Seu carrinho está vazio.</p>
+        </div>
+
+        <div class="carrinho-rodape">
+            <div class="total-container">
+                <span>Total: </span>
+                <span id="carrinho-total">R$ 0,00</span>
+            </div>
+            <button class="botao-finalizar">Finalizar Pedido</button>
+        </div>
+    </aside>
+
     <header class="barra-superior"> 
-    <h1>Raízes do Nordeste</h1>
-    <nav>
-        <a href="html/login.html">Login</a>
-        <a href="html/cadastra.html">Cadastrar</a> 
-    </nav>
-</header>
+        <div class="logo-topo">🌾 Raízes do Nordeste</div>
+        <nav>
+            <a href="html/login.html">Login</a>
+            <a href="html/cadastra.html">Cadastrar</a> 
+        </nav>
+    </header>
+
     <main>
-        <h1>Raízes do Nordeste</h1>
-        <p>O verdadeiro sabor do cuscuz e da tapioca</p>
+        <section class="boas-vindas">
+            <h1>Nosso Cardápio</h1>
+            <p>O verdadeiro sabor da culinária nordestina feito com amor e tradição.</p>
+        </section>
+
+        <h2 class="categoria-titulo">🥞 Tapiocas & Cuscuz</h2>
         <div class="cardapio">
-
             <div class="produto-item">
-                <h3>Tapioca de Carne do Sol </h3>
-                <p class="preco"> R$ 18,00</p>
+                <span class="badge-destaque">Mais Pedido</span>
+                <div class="produto-foto">🥞</div>
+                <h3>Tapioca de Carne do Sol</h3>
+                <p class="descricao">Massa artesanal recheada com carne do sol desfiada, queijo coalho e manteiga de garrafa.</p>
+                <p class="preco">R$ 18,00</p>
                 <button type="button">Adicionar ao Carrinho</button>
             </div>
 
             <div class="produto-item">
-                <h3>Cuscuz </h3>
-                <p class="preco"> R$ 10,00</p>
+                <span class="badge-destaque">Tradicional</span>
+                <div class="produto-foto">🌽</div>
+                <h3>Cuscuz Nordestino Completo</h3>
+                <p class="descricao">Fofinho e quentinho, acompanhado de ovo frito na hora, queijo coalho derretido e carne seca.</p>
+                <p class="preco">R$ 14,00</p>
                 <button type="button">Adicionar ao Carrinho</button>
             </div>
 
             <div class="produto-item">
-                <h3>Mortandela </h3>
-                <p class="preco"> R$ 8,00</p>
+                <div class="produto-foto">🥞</div>
+                <h3>Tapioca de Coco e Leite Condensado</h3>
+                <p class="descricao">Opção doce com coco ralado fresco e uma cobertura generosa de leite condensado.</p>
+                <p class="preco">R$ 12,00</p>
+                <button type="button">Adicionar ao Carrinho</button>
+            </div>
+        </div>
+
+        <h2 class="categoria-titulo">🍛 Pratos Arretados</h2>
+        <div class="cardapio">
+            <div class="produto-item">
+                <span class="badge-destaque">Especial da Casa</span>
+                <div class="produto-foto">🥘</div>
+                <h3>Baião de Dois</h3>
+                <p class="descricao">Arroz misturado com feijão de corda, bacon, calabresa, carne do sol e muito queijo coalho picado.</p>
+                <p class="preco">R$ 28,00</p>
+                <button type="button">Adicionar ao Carrinho</button>
+            </div>
+
+            <div class="produto-item">
+                <div class="produto-foto">🍲</div>
+                <h3>Arrubacão</h3>
+                <p class="descricao">Uma versão ultra cremosa do baião, finalizada com creme de leite fresco e coentro.</p>
+                <p class="preco">R$ 26,00</p>
+                <button type="button">Adicionar ao Carrinho</button>
+            </div>
+        </div>
+
+        <h2 class="categoria-titulo">🥤 Bebidas</h2>
+        <div class="cardapio">
+            <div class="produto-item">
+                <div class="produto-foto">☕</div>
+                <h3>Café Coado na Hora</h3>
+                <p class="descricao">A combinação perfeita para acompanhar o seu cuscuz quente.</p>
+                <p class="preco">R$ 4,50</p>
+                <button type="button">Adicionar ao Carrinho</button>
+            </div>
+
+            <div class="produto-item">
+                <div class="produto-foto">🍹</div>
+                <h3>Suco Natural de Cajá</h3>
+                <p class="descricao">Suco feito com a pura polpa da fruta bem gelada.</p>
+                <p class="preco">R$ 7,00</p>
                 <button type="button">Adicionar ao Carrinho</button>
             </div>
         </div>
     </main>
-<footer>
-    <div class="seletor-unidade">
-        <label for="unidade">Escolha a unidade mais próxima:</label>
-        <select id="unidade" name="unidade">
-            <option value="recife">Recife</option>
-            <option value="caruaru">Caruaru</option>
-            <option value="fortaleza">Fortaleza</option>
-        </select>
-    </div>
-</footer>
-<script src="js/scripts.js"></script>
+
+    <footer>
+        <div class="seletor-unidade">
+            <label for="unidade">Escolha a unidade mais próxima:</label>
+            <select id="unidade" name="unidade">
+                <option value="recife">Recife</option>
+                <option value="caruaru">Caruaru</option>
+                <option value="fortaleza">Fortaleza</option>
+            </select>
+        </div>
+    </footer>
+
+    <script src="js/scripts.js"></script>
 </body>
 </html>
