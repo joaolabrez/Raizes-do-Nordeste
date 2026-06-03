@@ -85,3 +85,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
+const formularioCadastro = document.forms['cadastra_form'];
+
+if (formularioCadastro) {
+    formularioCadastro.addEventListener('submit', (evento) => {
+        const senha = document.getElementById('password').value;
+        const confirmarSenha = document.getElementById('confirm_password').value;
+
+        if (senha !== confirmarSenha) {
+            evento.preventDefault();
+            
+            alert('Atenção: As senhas digitadas não são iguais! Por favor, verifique.');
+            
+            const campoConfirmar = document.getElementById('confirm_password');
+            campoConfirmar.focus();
+            campoConfirmar.style.borderColor = '#ff0000';
+        }
+    });
+}

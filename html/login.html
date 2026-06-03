@@ -7,31 +7,47 @@
     <title>Login</title>
 </head>
 <body>
-    <header class="barra-superior">
-        <nav>
-            <a href="../index.html">← Voltar para o Cardápio</a>
-        </nav>
-    </header>
-
-    <main class="container-autenticacao">
-        <div class="caixa-registro">
-            <h2>Entrar no Sistema</h2>
-            <form name="login_form" method="get" action="../index.html">
-                <label for="login">Login:</label>
-                <input type="text" id="login" name="login" placeholder="Digite seu login" required>
-                
-                <label for="password">Senha:</label>
-                <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
-                
-                <div class="container-lgpd">
-                    <input type="checkbox" id="lgpd" required>
-                    <label for="lgpd">Aceito os termos de privacidade e uso de dados conforme a LGPD.</label>
+    <div class="cadastro-wrapper">
+        <div class="cadastro-container">
+            
+            <div class="cadastro-info-lateral">
+                <div class="info-conteudo">
+                    <h1>Raízes do Nordeste</h1>
+                    <p>Que bom ver você de volta! Acesse sua conta para fazer o seu pedido.</p>
+                    <div class="decoracao-nordeste">🌵 ✨ 🥞</div>
                 </div>
+            </div>
+
+            <div class="cadastro-card">
+                <a href="../index.html" style="color: #8B4513; text-decoration: none; font-weight: bold; font-size: 0.85rem; margin-bottom: 20px; display: inline-block;">← Voltar para o Cardápio</a>
+
+                <h2>Entrar no Sistema</h2>
+                <p class="cadastro-subtitulo">Digite suas credenciais de acesso</p>
+
+                <form name="login_form" method="get" action="../index.html">
+                    
+                    <div class="campo-grupo">
+                        <label for="login">Login:</label>
+                        <input type="text" id="login" name="login" placeholder="Digite seu login" required>
+                    </div>
+                    
+                    <div class="campo-grupo">
+                        <label for="password">Senha:</label>
+                        <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+                    </div>
+                    
+                    <div class="container-lgpd">
+                        <input type="checkbox" id="lgpd" required>
+                        <label for="lgpd">Aceito os termos de privacidade e uso de dados conforme a LGPD.</label>
+                    </div>
+                    
+                    <input type="submit" value="Entrar" class="botao-cadastro">
+                </form>
                 
-                <input type="submit" value="Entrar">
-            </form>
-            <p class="link-alternativo">Não tem conta? <a href="cadastra.html">Cadastre-se aqui</a></p>
+                <p class="link-alternativo">Não tem conta? <a href="cadastra.html">Cadastre-se aqui</a></p>
+            </div>
+
         </div>
-    </main>
+    </div>
 </body>
 </html>

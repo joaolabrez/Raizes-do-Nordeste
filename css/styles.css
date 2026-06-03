@@ -631,3 +631,10 @@ nav a:hover::after {
         gap: 12px;
     }
 }
+
+.cadastro-card input[type="text"], 
+.cadastro-card input[type="password"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+}
