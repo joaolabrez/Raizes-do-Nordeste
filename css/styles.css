@@ -326,3 +326,119 @@ nav a:hover::after {
 .caixa-registro {
     animation: surgir 0.5s ease-out;
 }
+
+.carrinho-icone {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #8B4513;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#carrinho-contador {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #ffffff;
+    color: #8B4513;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #8B4513;
+}
+
+.carrinho-lateral {
+    position: fixed;
+    top: 0;
+    right: -350px;
+    width: 320px;
+    height: 100vh;
+    background-color: #ffffff;
+    box-shadow: -4px 0 8px rgba(0,0,0,0.1);
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    transition: right 0.3s ease;
+}
+
+.carrinho-lateral.aberto {
+    right: 0;
+}
+
+.carrinho-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.carrinho-topo h2 {
+    color: #8B4513;
+    font-family: Arial, sans-serif;
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+#fechar-carrinho {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #555;
+}
+
+.carrinho-itens {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.carrinho-vazio {
+    font-family: Arial, sans-serif;
+    color: #777;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.carrinho-rodape {
+    padding: 20px;
+    border-top: 1px solid #eee;
+    background-color: #f9f9f9;
+}
+
+.total-container {
+    display: flex;
+    justify-content: space-between;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.botao-finalizar {
+    width: 100%;
+    background-color: #8B4513;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 4px;
+}
