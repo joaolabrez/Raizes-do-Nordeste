@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    let carrinho = [];
+    let carrinho = JSON.parse(localStorage.getItem('carrinhoSalvo')) || [];
 
     const carrinhoMenu = document.getElementById('carrinho-menu');
     const abrirCarrinhoBtn = document.getElementById('abrir-carrinho');
@@ -7,6 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const carrinhoListaItens = document.getElementById('carrinho-lista-itens');
     const carrinhoContador = document.getElementById('carrinho-contador');
     const carrinhoTotal = document.getElementById('carrinho-total');
+    
+    const botaoFinalizar = document.getElementById('finalizar-pedido-btn');
+    const painelStatus = document.getElementById('painel-status');
+    const textoStatus = document.getElementById('texto-status');
+    const barraProgresso = document.getElementById('barra-progresso');
 
     if (abrirCarrinhoBtn && carrinhoMenu) {
         abrirCarrinhoBtn.addEventListener('click', () => {
@@ -33,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const preco = parseFloat(precoTexto.replace('R$', '').replace(',', '.').trim());
 
             carrinho.push({ nome, preco });
-            
             atualizarCarrinho();
             
             if (carrinhoMenu) {
@@ -52,18 +56,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (carrinho.length === 0) {
             carrinhoListaItens.innerHTML = '<p class="carrinho-vazio">Seu carrinho está vazio.</p>';
             if (carrinhoTotal) carrinhoTotal.textContent = 'R$ 0,00';
+            localStorage.setItem('carrinhoSalvo', JSON.stringify(carrinho));
             return;
         }
 
         carrinhoListaItens.innerHTML = '';
         let valorTotal = 0;
 
-        carrinho.forEach((item) => {
+        carrinho.forEach((item, indice) => {
             valorTotal += item.preco;
 
             const divItem = document.createElement('div');
             divItem.style.display = 'flex';
             divItem.style.justifyContent = 'space-between';
+            divItem.style.alignItems = 'center';
             divItem.style.marginBottom = '10px';
             divItem.style.fontFamily = 'Arial, sans-serif';
             divItem.style.fontSize = '0.95rem';
@@ -73,8 +79,11 @@ document.addEventListener('DOMContentLoaded', () => {
             divItem.style.paddingRight = '15px';
 
             divItem.innerHTML = `
-                <span>${item.nome}</span>
-                <span style="font-weight: bold; color: #8B4513;">R$ ${item.preco.toFixed(2).replace('.', ',')}</span>
+                <div style="display: flex; flex-direction: column;">
+                    <span>${item.nome}</span>
+                    <span style="font-weight: bold; color: #8B4513; font-size: 0.85rem;">R$ ${item.preco.toFixed(2).replace('.', ',')}</span>
+                </div>
+                <button class="remover-item-btn" data-index="${indice}" style="background: none; border: none; color: #ff0000; font-weight: bold; cursor: pointer; font-size: 1.1rem; padding: 5px;">&times;</button>
             `;
             
             carrinhoListaItens.appendChild(divItem);
@@ -82,6 +91,71 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (carrinhoTotal) {
             carrinhoTotal.textContent = `R$ ${valorTotal.toFixed(2).replace('.', ',')}`;
+        }
+
+        const botoesRemover = document.querySelectorAll('.remover-item-btn');
+        botoesRemover.forEach((botao) => {
+            botao.addEventListener('click', (evento) => {
+                const indexParaRemover = parseInt(evento.target.getAttribute('data-index'));
+                carrinho.splice(indexParaRemover, 1);
+                atualizarCarrinho();
+            });
+        });
+
+        localStorage.setItem('carrinhoSalvo', JSON.stringify(carrinho));
+    }
+
+    if (botaoFinalizar) {
+        botaoFinalizar.addEventListener('click', () => {
+            if (carrinho.length === 0) {
+                alert('Seu carrinho está vazio!');
+                return;
+            }
+
+            if (carrinhoMenu) {
+                carrinhoMenu.classList.remove('aberto');
+            }
+
+            carrinho = [];
+            atualizarCarrinho();
+
+            if (painelStatus) {
+                painelStatus.style.display = 'block';
+                textoStatus.textContent = 'Status: Pedido Recebido 📝';
+                barraProgresso.style.width = '20%';
+
+                setTimeout(() => {
+                    textoStatus.textContent = 'Status: Em Preparo 🥞';
+                    barraProgresso.style.width = '60%';
+                }, 4000);
+
+                setTimeout(() => {
+                    textoStatus.textContent = 'Status: Pronto para Retirada! 🛵';
+                    barraProgresso.style.width = '100%';
+                    barraProgresso.style.backgroundColor = '#28a745';
+                }, 8000);
+            }
+        });
+    }
+
+    atualizarCarrinho();
+
+    const menuUsuario = document.getElementById('menu-usuario');
+    const usuarioLogado = localStorage.getItem('usuarioLogado');
+
+    if (menuUsuario && usuarioLogado) {
+        menuUsuario.innerHTML = `
+            <span style="color: #8B4513; font-weight: bold; margin-right: 15px; font-family: Arial, sans-serif;">Olá, ${usuarioLogado}! 👋</span>
+            <a href="#" id="botao-sair" style="color: #8B4513; text-decoration: none; font-weight: bold; font-family: Arial, sans-serif;">Sair</a>
+        `;
+
+        const botaoSair = document.getElementById('botao-sair');
+        if (botaoSair) {
+            botaoSair.addEventListener('click', (evento) => {
+                evento.preventDefault();
+                localStorage.removeItem('usuarioLogado');
+                window.location.reload();
+            });
         }
     }
 });
@@ -119,5 +193,23 @@ if (formularioCadastro) {
         setTimeout(() => {
             window.location.href = 'login.html';
         }, 2000);
+    });
+}
+
+const formularioLoginUnico = document.forms['login_form'] || document.querySelector('.login-card form') || document.querySelector('form');
+
+if (formularioLoginUnico) {
+    formularioLoginUnico.addEventListener('submit', (evento) => {
+        evento.preventDefault();
+        
+        const campoUsuario = document.getElementById('username') || document.querySelector('input[type="text"]');
+        const loginDigitado = campoUsuario ? campoUsuario.value.trim() : '';
+        
+        if (loginDigitado !== '') {
+            localStorage.setItem('usuarioLogado', loginDigitado);
+            window.location.href = '../index.html';
+        } else {
+            alert('Por favor, digite o seu usuário.');
+        }
     });
 }

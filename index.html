@@ -27,13 +27,21 @@
                 <span>Total: </span>
                 <span id="carrinho-total">R$ 0,00</span>
             </div>
-            <button class="botao-finalizar">Finalizar Pedido</button>
+            <button id="finalizar-pedido-btn" class="botao-finalizar">Finalizar Pedido</button>
         </div>
     </aside>
 
+    <div id="painel-status" style="display: none; position: fixed; top: 20px; right: 20px; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.2); border-radius: 8px; padding: 20px; width: 300px; z-index: 1000; border-left: 5px solid #8B4513; font-family: Arial, sans-serif;">
+        <h4 style="margin: 0 0 10px 0; color: #8B4513;">Acompanhe seu Pedido 🌾</h4>
+        <p id="texto-status" style="font-weight: bold; margin-bottom: 15px; color: #333;">Status: Aguardando...</p>
+        <div style="background: #f3f3f3; height: 8px; border-radius: 4px; overflow: hidden;">
+            <div id="barra-progresso" style="background: #8B4513; height: 100%; width: 0%; transition: width 0.5s ease;"></div>
+        </div>
+    </div>
+
     <header class="barra-superior"> 
         <div class="logo-topo">🌾 Raízes do Nordeste</div>
-        <nav>
+        <nav id="menu-usuario">
             <a href="html/login.html">Login</a>
             <a href="html/cadastra.html">Cadastrar</a> 
         </nav>
@@ -124,7 +132,7 @@
             </select>
         </div>
     </footer>
-
+    
     <script src="js/scripts.js"></script>
 </body>
 </html>
