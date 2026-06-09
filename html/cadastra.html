@@ -37,7 +37,7 @@
                 <div class="linha-campos">
                     <div class="campo-grupo">
                         <label for="contato">Contato:</label>
-                        <input type="number" id="contato" name="Contato" placeholder="(81) 99999-9999" required>
+                        <input type="number" id="contact" name="Contato" placeholder="(81) 99999-9999" oninput="if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="11" required>
                     </div>
                     
                     <div class="campo-grupo">

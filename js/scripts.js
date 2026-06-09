@@ -122,6 +122,14 @@ document.addEventListener('DOMContentLoaded', () => {
             carrinho = [];
             atualizarCarrinho();
 
+            const botaoFecharStatus = document.getElementById('fechar-status-btn');
+            if (botaoFecharStatus) {
+                botaoFecharStatus.style.display = 'none';
+                botaoFecharStatus.onclick = () => {
+                    painelStatus.style.display = 'none';
+                };
+            }
+
             if (painelStatus) {
                 painelStatus.style.display = 'block';
                 textoStatus.textContent = 'Status: Pedido Recebido 📝';
@@ -136,6 +144,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     textoStatus.textContent = 'Status: Pronto para Retirada! 🛵';
                     barraProgresso.style.width = '100%';
                     barraProgresso.style.backgroundColor = '#28a745';
+                    
+                    if (botaoFecharStatus) {
+                        botaoFecharStatus.style.display = 'block';
+                    }
                 }, 8000);
             }
         });
@@ -182,6 +194,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
+const campoDataNascimento = document.getElementById('data_nascimento');
+if (campoDataNascimento) {
+    const hoje = new Date().toISOString().split('T')[0];
+    campoDataNascimento.max = hoje;
+}
 
 const formularioCadastro = document.forms['cadastra_form'];
 

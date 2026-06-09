@@ -116,6 +116,7 @@ select {
     border: none;
     border-radius: 4px;
     font-weight: bold;
+    margin-top: 1.5rem;
 }
 
 .barra-superior .seletor-unidade {
@@ -443,25 +444,36 @@ nav a:hover::after {
     border-radius: 4px;
 }
 
+.cadastro-form {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.cadastro-info {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
 .cadastro-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #fcf8f5;
+    background-color: #ffffff;
     padding: 20px;
     box-sizing: border-box;
+    width: 100%;
 }
 
 .cadastro-container {
     display: flex;
     background-color: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(139, 69, 19, 0.12);
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     width: 100%;
     max-width: 850px;
     overflow: hidden;
-    min-height: 580px;
 }
 
 .cadastro-info-lateral {
@@ -963,4 +975,14 @@ main {
     .rodape-container {
         flex-direction: column;
     }
+}
+
+.rodape-redes a i {
+    font-size: 1.5rem !important;
+    color: #ffffff !important;
+    display: inline-block !important;
+}
+
+.rodape-redes a:hover i {
+    color: #D2691E !important;
 }
