@@ -911,6 +911,8 @@ main {
     line-height: 1.6;
     color: #cccccc;
     margin: 8px 0;
+    max-width: 350px;
+    line-height: 1.5;
 }
 
 .rodape-coluna ul {
@@ -986,3 +988,4 @@ main {
 .rodape-redes a:hover i {
     color: #D2691E !important;
 }
+

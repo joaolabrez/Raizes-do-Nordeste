@@ -180,8 +180,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (menuUsuario && usuarioLogado) {
         menuUsuario.innerHTML = `
-            <span style="color: #8B4513; font-weight: bold; margin-right: 15px; font-family: Arial, sans-serif;">Olá, ${usuarioLogado}! 👋</span>
-            <a href="#" id="botao-sair" style="color: #8B4513; text-decoration: none; font-weight: bold; font-family: Arial, sans-serif;">Sair</a>
+            <div style="display: flex; align-items: center; gap: 6px; font-family: Arial, sans-serif; color: #8B4513; font-weight: bold;">
+                <span>Olá, ${usuarioLogado}!</span>
+                <i class="bi bi-person-fill" style="font-size: 1.1rem;"></i>
+                <a href="#" id="botao-sair" style="color: #8B4513; text-decoration: none; margin-left: 8px;">Sair</a>
+            </div>
         `;
 
         const botaoSair = document.getElementById('botao-sair');
@@ -205,18 +208,19 @@ const formularioCadastro = document.forms['cadastra_form'];
 
 if (formularioCadastro) {
     formularioCadastro.addEventListener('submit', (evento) => {
-        evento.preventDefault(); 
-
         const senha = document.getElementById('password').value;
         const confirmarSenha = document.getElementById('confirm_password').value;
 
         if (senha !== confirmarSenha) {
+            evento.preventDefault(); 
             alert('Atenção: As senhas digitadas não são iguais! Por favor, verifique.');
             const campoConfirmar = document.getElementById('confirm_password');
             campoConfirmar.focus();
             campoConfirmar.style.borderColor = '#ff0000';
             return; 
         }
+
+        evento.preventDefault(); 
 
         const avisoSucesso = document.createElement('div');
         avisoSucesso.className = 'aviso-sucesso-animado';
@@ -237,7 +241,7 @@ if (formularioCadastro) {
     });
 }
 
-const formularioLoginUnico = document.forms['login_form'] || document.querySelector('.login-card form') || document.querySelector('form');
+const formularioLoginUnico = document.forms['login_form'] || document.querySelector('.login-card form');
 
 if (formularioLoginUnico) {
     formularioLoginUnico.addEventListener('submit', (evento) => {
@@ -252,5 +256,26 @@ if (formularioLoginUnico) {
         } else {
             alert('Por favor, digite o seu usuário.');
         }
+    });
+}
+
+const campoContato = document.getElementById('contato');
+if (campoContato) {
+    campoContato.addEventListener('input', (evento) => {
+        let valor = evento.target.value;
+        
+        valor = valor.replace(/\D/g, "");
+        
+        if (valor.length > 0) {
+            valor = "(" + valor;
+        }
+        if (valor.length > 3) {
+            valor = valor.slice(0, 3) + ") " + valor.slice(3);
+        }
+        if (valor.length > 10) {
+            valor = valor.slice(0, 10) + "-" + valor.slice(10, 14);
+        }
+        
+        evento.target.value = valor;
     });
 }

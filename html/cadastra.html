@@ -1,81 +1,129 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/styles.css" />
     <title>Cadastrar</title>
-</head>
-<body>
-<div class="cadastro-wrapper">
-    <div class="cadastro-container">
-        
+  </head>
+  <body>
+    <div class="cadastro-wrapper">
+      <div class="cadastro-container">
         <div class="cadastro-info-lateral">
-            <div class="info-conteudo">
-                <h1>Raízes do Nordeste</h1>
-                <p>O verdadeiro sabor do cuscuz e da tapioca agora a um clique de você.</p>
-                <div class="decoracao-nordeste">🌵 ✨ 🥞</div>
-            </div>
+          <div class="info-conteudo">
+            <h1>Raízes do Nordeste</h1>
+            <p>
+              O verdadeiro sabor do cuscuz e da tapioca agora a um clique de você.
+            </p>
+            <div class="decoracao-nordeste">🌵 ✨ 🥞</div>
+          </div>
         </div>
 
         <div class="cadastro-card">
-            <h2>Criar Conta</h2>
-            <p class="cadastro-subtitulo">Preencha os campos para se cadastrar</p>
+          <h2>Criar Conta</h2>
+          <p class="cadastro-subtitulo">Preencha os campos para se cadastrar</p>
 
-            <form name="cadastra_form" method="get" action="login.html">
-                
-                <div class="campo-grupo">
-                    <label for="Nome">Nome Completo:</label>
-                    <input type="text" id="Nome" name="Nome" placeholder="Digite seu nome" required>
-                </div>
-                
-                <div class="campo-grupo">
-                    <label for="Email">Email:</label>
-                    <input type="email" id="Email" name="Email" placeholder="Digite seu email" required>
-                </div>
-                
-                <div class="linha-campos">
-                    <div class="campo-grupo">
-                        <label for="contato">Contato:</label>
-                        <input type="number" id="contact" name="Contato" placeholder="(81) 99999-9999" oninput="if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="11" required>
-                    </div>
-                    
-                    <div class="campo-grupo">
-                        <label for="data_nascimento">Data de Nascimento:</label>
-                        <input type="date" id="data_nascimento" name="DataNascimento" required>
-                    </div>
-                </div>
+          <form name="cadastra_form" method="get" action="login.html">
+            <div class="campo-grupo">
+              <label for="Nome">Nome Completo:</label>
+              <input
+                type="text"
+                id="Nome"
+                name="Nome"
+                placeholder="Digite seu nome"
+                required
+              />
+            </div>
 
-                <div class="campo-grupo">
-                    <label for="login">Login:</label>
-                    <input type="text" id="login" name="login" placeholder="Escolha um usuário" required>
-                </div>
+            <div class="campo-grupo">
+              <label for="Email">Email:</label>
+              <input
+                type="email"
+                id="Email"
+                name="Email"
+                placeholder="Digite seu email"
+                required
+              />
+            </div>
 
-                <div class="linha-campos">
-                    <div class="campo-grupo">
-                        <label for="password">Senha:</label>
-                        <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
-                    </div>
+            <div class="linha-campos">
+              <div class="campo-grupo">
+                <label for="contato">Contato:</label>
+                <input
+                  type="text"
+                  id="contato"
+                  name="Contato"
+                  placeholder="(81) 99999-9999"
+                  maxlength="15"
+                  required
+                />
+              </div>
 
-                    <div class="campo-grupo">
-                        <label for="confirm_password">Confirmar Senha:</label>
-                        <input type="password" id="confirm_password" name="confirm_password" placeholder="Repita a senha" required>
-                    </div>
-                </div>
+              <div class="campo-grupo">
+                <label for="data_nascimento">Data de Nascimento:</label>
+                <input
+                  type="date"
+                  id="data_nascimento"
+                  name="DataNascimento"
+                  required
+                />
+              </div>
+            </div>
 
-                <div class="container-lgpd">
-                    <input type="checkbox" id="lgpd" required>
-                    <label for="lgpd">Aceito os termos de privacidade e uso de dados conforme a LGPD.</label>
-                </div>
+            <div class="campo-grupo">
+              <label for="login">Login:</label>
+              <input
+                type="text"
+                id="login"
+                name="login"
+                placeholder="Escolha um usuário"
+                required
+              />
+            </div>
 
-                <input type="submit" value="Cadastrar" class="botao-cadastro">
-            </form>
-            
-            <p class="link-alternativo">Já tem conta? <a href="login.html">Faça login aqui</a></p>
+            <div class="linha-campos">
+              <div class="campo-grupo">
+                <label for="password">Senha:</label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="Digite sua senha"
+                  required
+                />
+              </div>
+
+              <div class="campo-grupo">
+                <label for="confirm_password">Confirmar Senha:</label>
+                <input
+                  type="password"
+                  id="confirm_password"
+                  name="confirm_password"
+                  placeholder="Repita a senha"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="container-lgpd">
+              <input type="checkbox" id="lgpd" required />
+              <label for="lgpd"
+                >Aceito os termos de privacidade e uso de dados conforme a LGPD.</label
+              >
+            </div>
+
+            <input type="submit" value="Cadastrar" class="botao-cadastro" />
+
+            <div style="display: flex; justify-content: center; width: 100%; margin-top: 20px;">
+              <p style="margin: 0; font-family: inherit; font-size: 0.95rem; color: #333; text-align: center;">
+                Já tem conta? <a href="login.html" style="color: #8b4513; text-decoration: none; font-weight: bold;">Faça login aqui</a>
+              </p>
+            </div>
+          </form>
+
         </div>
-
+      </div>
     </div>
-</div>
-<script src="../js/scripts.js"></script>
-</body>
+    <script src="../js/scripts.js"></script>
+  </body>
 </html>
