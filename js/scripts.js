@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const textoStatus = document.getElementById('texto-status');
     const barraProgresso = document.getElementById('barra-progresso');
 
+    const seletorUnidade = document.getElementById('unidade');
+    const produtos = document.querySelectorAll('.produto-item');
+
     if (abrirCarrinhoBtn && carrinhoMenu) {
         abrirCarrinhoBtn.addEventListener('click', () => {
             carrinhoMenu.classList.add('aberto');
@@ -135,6 +138,26 @@ document.addEventListener('DOMContentLoaded', () => {
                     barraProgresso.style.backgroundColor = '#28a745';
                 }, 8000);
             }
+        });
+    }
+
+    if (seletorUnidade) {
+        seletorUnidade.addEventListener('change', (e) => {
+            carrinho = [];
+            atualizarCarrinho();
+            localStorage.setItem('carrinhoSalvo', JSON.stringify(carrinho));
+
+            const unidadeEscolhida = e.target.value;
+
+            produtos.forEach(produto => {
+                const unidadeDoProduto = produto.getAttribute('data-unidade');
+
+                if (unidadeDoProduto === unidadeEscolhida || unidadeDoProduto === 'todas') {
+                    produto.style.display = 'block';
+                } else {
+                    produto.style.display = 'none'; 
+                }
+            });
         });
     }
 
