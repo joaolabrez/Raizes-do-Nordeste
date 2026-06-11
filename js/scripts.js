@@ -42,10 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             carrinho.push({ nome, preco });
             atualizarCarrinho();
-            
-            if (carrinhoMenu) {
-                carrinhoMenu.classList.add('aberto');
-            }
         });
     });
 
@@ -86,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span>${item.nome}</span>
                     <span style="font-weight: bold; color: #8B4513; font-size: 0.85rem;">R$ ${item.preco.toFixed(2).replace('.', ',')}</span>
                 </div>
-                <button class="remover-item-btn" data-index="${indice}" style="background: none; border: none; color: #ff0000; font-weight: bold; cursor: pointer; font-size: 1.1rem; padding: 5px;">&times;</button>
+                <button class="remover-item-btn" data-index="${indice}" style="background: none; border: none; color: #333; font-weight: bold; cursor: pointer; font-size: 1.1rem; padding: 5px;">&times;</button>
             `;
             
             carrinhoListaItens.appendChild(divItem);
@@ -109,49 +105,96 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (botaoFinalizar) {
-        botaoFinalizar.addEventListener('click', () => {
-            if (carrinho.length === 0) {
-                alert('Seu carrinho está vazio!');
-                return;
-            }
+    botaoFinalizar.addEventListener('click', () => {
+        if (carrinho.length === 0) {
+            alert('Seu carrinho está vazio!');
+            return;
+        }
 
-            if (carrinhoMenu) {
-                carrinhoMenu.classList.remove('aberto');
-            }
+        if (carrinhoMenu) {
+            carrinhoMenu.classList.remove('aberto');
+        }
 
-            carrinho = [];
-            atualizarCarrinho();
+        const modalPagamento = document.createElement('div');
+        modalPagamento.style.position = 'fixed';
+        modalPagamento.style.top = '0';
+        modalPagamento.style.left = '0';
+        modalPagamento.style.width = '100vw';
+        modalPagamento.style.height = '100vh';
+        modalPagamento.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+        modalPagamento.style.display = 'flex';
+        modalPagamento.style.justifyContent = 'center';
+        modalPagamento.style.alignItems = 'center';
+        modalPagamento.style.zIndex = '9999';
+        modalPagamento.style.fontFamily = 'Arial, sans-serif';
 
-            const botaoFecharStatus = document.getElementById('fechar-status-btn');
-            if (botaoFecharStatus) {
-                botaoFecharStatus.style.display = 'none';
-                botaoFecharStatus.onclick = () => {
-                    painelStatus.style.display = 'none';
-                };
-            }
+        const conteudoModal = document.createElement('div');
+        conteudoModal.style.backgroundColor = '#fff';
+        conteudoModal.style.padding = '30px';
+        conteudoModal.style.borderRadius = '8px';
+        conteudoModal.style.textAlign = 'center';
+        conteudoModal.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
+        
+        conteudoModal.innerHTML = `
+            <div style="border: 4px solid #f3f3f3; border-top: 4px solid #8B4513; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 15px auto;"></div>
+            <h3 style="margin: 0 0 10px 0; color: #333;">Processando Pagamento</h3>
+            <p style="margin: 0; color: #666; font-size: 0.95rem;">Conectando com o gateway externo de forma segura...</p>
+        `;
 
-            if (painelStatus) {
-                painelStatus.style.display = 'block';
-                textoStatus.textContent = 'Status: Pedido Recebido 📝';
-                barraProgresso.style.width = '20%';
+        const estiloAnimacao = document.createElement('style');
+        estiloAnimacao.innerHTML = '@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }';
+        document.head.appendChild(estiloAnimacao);
 
-                setTimeout(() => {
-                    textoStatus.textContent = 'Status: Em Preparo 🥞';
-                    barraProgresso.style.width = '60%';
-                }, 4000);
+        conteudoModal.appendChild(estiloAnimacao);
+        modalPagamento.appendChild(conteudoModal);
+        document.body.appendChild(modalPagamento);
 
-                setTimeout(() => {
-                    textoStatus.textContent = 'Status: Pronto para Retirada! 🛵';
-                    barraProgresso.style.width = '100%';
-                    barraProgresso.style.backgroundColor = '#28a745';
-                    
-                    if (botaoFecharStatus) {
-                        botaoFecharStatus.style.display = 'block';
-                    }
-                }, 8000);
-            }
-        });
-    }
+        setTimeout(() => {
+            conteudoModal.innerHTML = `
+                <div style="font-size: 3rem; margin-bottom: 10px;">💳 ✅</div>
+                <h3 style="margin: 0 0 10px 0; color: #28a745;">Pagamento Aprovado!</h3>
+                <p style="margin: 0; color: #666; font-size: 0.95rem;">Transação confirmada pela operadora externa.</p>
+            `;
+
+            setTimeout(() => {
+                modalPagamento.remove();
+
+                carrinho = [];
+                atualizarCarrinho();
+
+                const botaoFecharStatus = document.getElementById('fechar-status-btn');
+                if (botaoFecharStatus) {
+                    botaoFecharStatus.style.display = 'none';
+                    botaoFecharStatus.onclick = () => {
+                        painelStatus.style.display = 'none';
+                    };
+                }
+
+                if (painelStatus) {
+                    painelStatus.style.display = 'block';
+                    textoStatus.textContent = 'Status: Pedido Recebido 📝';
+                    barraProgresso.style.width = '20%';
+
+                    setTimeout(() => {
+                        textoStatus.textContent = 'Status: Em Preparo 🥞';
+                        barraProgresso.style.width = '60%';
+                    }, 4000);
+
+                    setTimeout(() => {
+                        textoStatus.textContent = 'Status: Pronto para Retirada! 🛵';
+                        barraProgresso.style.width = '100%';
+                        barraProgresso.style.backgroundColor = '#28a745';
+                        
+                        if (botaoFecharStatus) {
+                            botaoFecharStatus.style.display = 'block';
+                        }
+                    }, 8000);
+                }
+            }, 1500);
+
+        }, 2000);
+    });
+}
 
     if (seletorUnidade) {
         seletorUnidade.addEventListener('change', (e) => {
