@@ -158,10 +158,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
             setTimeout(() => {
                 modalPagamento.remove();
-
                 carrinho = [];
                 atualizarCarrinho();
 
+                let pontosAtuais = parseInt(localStorage.getItem('pontosFidelidade')) || 100;
+                pontosAtuais += 20;
+                localStorage.setItem('pontosFidelidade', pontosAtuais.toString());
+
+                window.location.reload();
+                
                 const botaoFecharStatus = document.getElementById('fechar-status-btn');
                 if (botaoFecharStatus) {
                     botaoFecharStatus.style.display = 'none';
@@ -222,11 +227,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const usuarioLogado = localStorage.getItem('usuarioLogado');
 
     if (menuUsuario && usuarioLogado) {
+        let pontosFidelidade = localStorage.getItem('pontosFidelidade') || '100';
+
         menuUsuario.innerHTML = `
-            <div style="display: flex; align-items: center; gap: 6px; font-family: Arial, sans-serif; color: #8B4513; font-weight: bold;">
-                <span>Olá, ${usuarioLogado}!</span>
-                <i class="bi bi-person-fill" style="font-size: 1.1rem;"></i>
-                <a href="#" id="botao-sair" style="color: #8B4513; text-decoration: none; margin-left: 8px;">Sair</a>
+            <div style="display: flex; align-items: center; gap: 8px; font-family: Arial, sans-serif;">
+                <div style="display: flex; flex-direction: column; align-items: flex-end; line-height: 1.2;">
+                    <span style="color: #8B4513; font-weight: bold; font-size: 0.95rem;">Olá, ${usuarioLogado}!</span>
+                    <span style="color: #28a745; font-size: 0.8rem; font-weight: bold;">🌟 ${pontosFidelidade} Pontos Raízes</span>
+                </div>
+                <i class="bi bi-person-fill" style="font-size: 1.3rem; color: #8B4513;"></i>
+                <a href="#" id="botao-sair" style="color: #8B4513; text-decoration: none; margin-left: 8px; font-size: 0.9rem; font-weight: bold;">Sair</a>
             </div>
         `;
 
@@ -235,6 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
             botaoSair.addEventListener('click', (evento) => {
                 evento.preventDefault();
                 localStorage.removeItem('usuarioLogado');
+                localStorage.removeItem('pontosFidelidade'); // Limpa ao sair
                 window.location.reload();
             });
         }
