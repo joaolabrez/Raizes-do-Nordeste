@@ -15,6 +15,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const seletorUnidade = document.getElementById('unidade');
     const produtos = document.querySelectorAll('.produto-item');
+    const menuUsuario = document.getElementById('menu-usuario');
+    const usuarioLogado = localStorage.getItem('usuarioLogado');
+
+    // FUNÇÃO ROBUSTA PARA ATUALIZAR OS PONTOS NA TELA VIA DOM
+    function atualizarPontosTela(pontos) {
+        let elementoPontos = document.getElementById('contador-pontos-fidelidade');
+        if (elementoPontos) {
+            elementoPontos.textContent = pontos;
+        }
+    }
 
     if (abrirCarrinhoBtn && carrinhoMenu) {
         abrirCarrinhoBtn.addEventListener('click', () => {
@@ -105,101 +115,104 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (botaoFinalizar) {
-    botaoFinalizar.addEventListener('click', () => {
-        if (carrinho.length === 0) {
-            alert('Seu carrinho está vazio!');
-            return;
-        }
+        botaoFinalizar.addEventListener('click', () => {
+            if (carrinho.length === 0) {
+                alert('Seu carrinho está vazio!');
+                return;
+            }
 
-        if (carrinhoMenu) {
-            carrinhoMenu.classList.remove('aberto');
-        }
+            if (carrinhoMenu) {
+                carrinhoMenu.classList.remove('aberto');
+            }
 
-        const modalPagamento = document.createElement('div');
-        modalPagamento.style.position = 'fixed';
-        modalPagamento.style.top = '0';
-        modalPagamento.style.left = '0';
-        modalPagamento.style.width = '100vw';
-        modalPagamento.style.height = '100vh';
-        modalPagamento.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-        modalPagamento.style.display = 'flex';
-        modalPagamento.style.justifyContent = 'center';
-        modalPagamento.style.alignItems = 'center';
-        modalPagamento.style.zIndex = '9999';
-        modalPagamento.style.fontFamily = 'Arial, sans-serif';
+            const modalPagamento = document.createElement('div');
+            modalPagamento.style.position = 'fixed';
+            modalPagamento.style.top = '0';
+            modalPagamento.style.left = '0';
+            modalPagamento.style.width = '100vw';
+            modalPagamento.style.height = '100vh';
+            modalPagamento.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+            modalPagamento.style.display = 'flex';
+            modalPagamento.style.justifyContent = 'center';
+            modalPagamento.style.alignItems = 'center';
+            modalPagamento.style.zIndex = '9999';
+            modalPagamento.style.fontFamily = 'Arial, sans-serif';
 
-        const conteudoModal = document.createElement('div');
-        conteudoModal.style.backgroundColor = '#fff';
-        conteudoModal.style.padding = '30px';
-        conteudoModal.style.borderRadius = '8px';
-        conteudoModal.style.textAlign = 'center';
-        conteudoModal.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
-        
-        conteudoModal.innerHTML = `
-            <div style="border: 4px solid #f3f3f3; border-top: 4px solid #8B4513; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 15px auto;"></div>
-            <h3 style="margin: 0 0 10px 0; color: #333;">Processando Pagamento</h3>
-            <p style="margin: 0; color: #666; font-size: 0.95rem;">Conectando com o gateway externo de forma segura...</p>
-        `;
-
-        const estiloAnimacao = document.createElement('style');
-        estiloAnimacao.innerHTML = '@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }';
-        document.head.appendChild(estiloAnimacao);
-
-        conteudoModal.appendChild(estiloAnimacao);
-        modalPagamento.appendChild(conteudoModal);
-        document.body.appendChild(modalPagamento);
-
-        setTimeout(() => {
+            const conteudoModal = document.createElement('div');
+            conteudoModal.style.backgroundColor = '#fff';
+            conteudoModal.style.padding = '30px';
+            conteudoModal.style.borderRadius = '8px';
+            conteudoModal.style.textAlign = 'center';
+            conteudoModal.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
+            
             conteudoModal.innerHTML = `
-                <div style="font-size: 3rem; margin-bottom: 10px;">💳 ✅</div>
-                <h3 style="margin: 0 0 10px 0; color: #28a745;">Pagamento Aprovado!</h3>
-                <p style="margin: 0; color: #666; font-size: 0.95rem;">Transação confirmada pela operadora externa.</p>
+                <div style="border: 4px solid #f3f3f3; border-top: 4px solid #8B4513; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 15px auto;"></div>
+                <h3 style="margin: 0 0 10px 0; color: #333;">Processando Pagamento</h3>
+                <p style="margin: 0; color: #666; font-size: 0.95rem;">Conectando com o gateway externo de forma segura...</p>
             `;
 
+            const estiloAnimacao = document.createElement('style');
+            estiloAnimacao.innerHTML = '@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }';
+            document.head.appendChild(estiloAnimacao);
+
+            conteudoModal.appendChild(estiloAnimacao);
+            modalPagamento.appendChild(conteudoModal);
+            document.body.appendChild(modalPagamento);
+
             setTimeout(() => {
-                modalPagamento.remove();
-                carrinho = [];
-                atualizarCarrinho();
+                conteudoModal.innerHTML = `
+                    <div style="font-size: 3rem; margin-bottom: 10px;">💳 ✅</div>
+                    <h3 style="margin: 0 0 10px 0; color: #28a745;">Pagamento Aprovado!</h3>
+                    <p style="margin: 0; color: #666; font-size: 0.95rem;">Transação confirmada pela operadora externa.</p>
+                `;
 
-                let pontosAtuais = parseInt(localStorage.getItem('pontosFidelidade')) || 100;
-                pontosAtuais += 20;
-                localStorage.setItem('pontosFidelidade', pontosAtuais.toString());
+                setTimeout(() => {
+                    modalPagamento.remove();
 
-                window.location.reload();
-                
-                const botaoFecharStatus = document.getElementById('fechar-status-btn');
-                if (botaoFecharStatus) {
-                    botaoFecharStatus.style.display = 'none';
-                    botaoFecharStatus.onclick = () => {
-                        painelStatus.style.display = 'none';
-                    };
-                }
+                    carrinho = [];
+                    atualizarCarrinho();
 
-                if (painelStatus) {
-                    painelStatus.style.display = 'block';
-                    textoStatus.textContent = 'Status: Pedido Recebido 📝';
-                    barraProgresso.style.width = '20%';
+                    // Incrementa e salva os pontos no LocalStorage
+                    let pontosAtuais = parseInt(localStorage.getItem('pontosFidelidade')) || 100;
+                    pontosAtuais += 20;
+                    localStorage.setItem('pontosFidelidade', pontosAtuais.toString());
 
-                    setTimeout(() => {
-                        textoStatus.textContent = 'Status: Em Preparo 🥞';
-                        barraProgresso.style.width = '60%';
-                    }, 4000);
+                    // Renderiza o novo valor direto na tela usando a função
+                    atualizarPontosTela(pontosAtuais);
 
-                    setTimeout(() => {
-                        textoStatus.textContent = 'Status: Pronto para Retirada! 🛵';
-                        barraProgresso.style.width = '100%';
-                        barraProgresso.style.backgroundColor = '#28a745';
-                        
-                        if (botaoFecharStatus) {
-                            botaoFecharStatus.style.display = 'block';
+                    const botaoFecharStatus = document.getElementById('fechar-status-btn');
+                    if (botaoFecharStatus) {
+                        botaoFecharStatus.style.display = 'none';
+                        botaoFecharStatus.onclick = () => {
+                            painelStatus.style.display = 'none';
+                        };
+                    }
+
+                    if (painelStatus) {
+                        painelStatus.style.display = 'block';
+                        textoStatus.textContent = 'Status: Pedido Recebido 📝';
+                        barraProgresso.style.width = '20%';
+
+                        setTimeout(() => {
+                            textoStatus.textContent = 'Status: Em Preparo 🥞';
+                            barraProgresso.style.width = '60%';
+                        }, 4000);
+
+                        setTimeout(() => {
+                            textoStatus.textContent = 'Status: Pronto para Retirada! 🛵';
+                            barraProgresso.style.width = '100%';
+                            barraProgresso.style.backgroundColor = '#28a745';
+                            
+                            if (botaoFecharStatus) {
+                                botaoFecharStatus.style.display = 'block';
                         }
-                    }, 8000);
-                }
-            }, 1500);
+                        }, 8000);
+                    }
+                }, 1500);
 
-        }, 2000);
-    });
-}
+            }, 2000);
+        });
+    }
 
     if (seletorUnidade) {
         seletorUnidade.addEventListener('change', (e) => {
@@ -221,11 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    atualizarCarrinho();
-
-    const menuUsuario = document.getElementById('menu-usuario');
-    const usuarioLogado = localStorage.getItem('usuarioLogado');
-
+    // Renderização inicial do Cabeçalho do Usuário com ID específico nos pontos
     if (menuUsuario && usuarioLogado) {
         let pontosFidelidade = localStorage.getItem('pontosFidelidade') || '100';
 
@@ -233,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div style="display: flex; align-items: center; gap: 8px; font-family: Arial, sans-serif;">
                 <div style="display: flex; flex-direction: column; align-items: flex-end; line-height: 1.2;">
                     <span style="color: #8B4513; font-weight: bold; font-size: 0.95rem;">Olá, ${usuarioLogado}!</span>
-                    <span style="color: #28a745; font-size: 0.8rem; font-weight: bold;">🌟 ${pontosFidelidade} Pontos Raízes</span>
+                    <span style="color: #28a745; font-size: 0.8rem; font-weight: bold;">🌟 <span id="contador-pontos-fidelidade">${pontosFidelidade}</span> Pontos Raízes</span>
                 </div>
                 <i class="bi bi-person-fill" style="font-size: 1.3rem; color: #8B4513;"></i>
                 <a href="#" id="botao-sair" style="color: #8B4513; text-decoration: none; margin-left: 8px; font-size: 0.9rem; font-weight: bold;">Sair</a>
@@ -245,11 +254,13 @@ document.addEventListener('DOMContentLoaded', () => {
             botaoSair.addEventListener('click', (evento) => {
                 evento.preventDefault();
                 localStorage.removeItem('usuarioLogado');
-                localStorage.removeItem('pontosFidelidade'); // Limpa ao sair
+                localStorage.removeItem('pontosFidelidade');
                 window.location.reload();
             });
         }
     }
+
+    atualizarCarrinho();
 });
 
 const campoDataNascimento = document.getElementById('data_nascimento');
