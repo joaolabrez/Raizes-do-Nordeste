@@ -242,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div style="display: flex; align-items: center; gap: 8px; font-family: Arial, sans-serif;">
                 <div style="display: flex; flex-direction: column; align-items: flex-end; line-height: 1.2;">
                     <span style="color: #8B4513; font-weight: bold; font-size: 0.95rem;">Olá, ${usuarioLogado}!</span>
-                    <span style="color: #28a745; font-size: 0.8rem; font-weight: bold;">🌟 <span id="contador-pontos-fidelidade">${pontosFidelidade}</span> Pontos Raízes</span>
+                    <span style="color: #28a745; font-size: 0.8rem; font-weight: bold;">🌟 <span id="contador-pontos-fidelidade">${pontosFidelidade}</span> Pontos</span>
                 </div>
                 <i class="bi bi-person-fill" style="font-size: 1.3rem; color: #8B4513;"></i>
                 <a href="#" id="botao-sair" style="color: #8B4513; text-decoration: none; margin-left: 8px; font-size: 0.9rem; font-weight: bold;">Sair</a>
